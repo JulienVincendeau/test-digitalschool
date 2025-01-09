@@ -7,6 +7,8 @@ client = bigquery.Client(project="sbx-mydigitalschool-2025")
 TABLE_ID = 'sbx-mydigitalschool-2025.test_grun.usa_1910_2013'
 
 def main():
+    print('Coucou Clara')
+    
     # Perform a query.
     QUERY = (
         'SELECT   `gender`,`name`,`number`,`state`,`year` '
