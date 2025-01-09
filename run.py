@@ -1,41 +1,40 @@
 import datetime
-import os
-
+from pathlib import Path
 from google.cloud import bigquery
 
+# Configuration
 client = bigquery.Client(project="sbx-mydigitalschool-2025")
 TABLE_ID = 'sbx-mydigitalschool-2025.test_grun.usa_1910_2013'
+OUTPUT_DIR = Path("/tmp")
+OUTPUT_FILE = OUTPUT_DIR / "scr.txt"
 
-def main():
-    # Perform a query.
-    QUERY = (
-        'SELECT   `gender`,`name`,`number`,`state`,`year` '
-        ' FROM `bigquery-public-data.usa_names.usa_1910_2013` '
-        'WHERE state = "TX" '
-        'LIMIT 100')
-    query_job = client.query(QUERY)  # API request
-    rows = query_job.result()  # Waits for query to finish
+def query_data():
+    """Execute la requête sur BigQuery et retourne les résultats."""
+    query = """
+        SELECT gender, name, number, state, year
+        FROM `bigquery-public-data.usa_names.usa_1910_2013`
+        WHERE state = "TX"
+        LIMIT 100
+    """
+    query_job = client.query(query)  # API request
+    return query_job.result()  # Attend la fin de la requête
 
-    rows_to_insert=[]
-    for row in rows: 
-        errors = client.insert_rows_json(TABLE_ID, [{
-            'gender' : row.gender,
-            'name' : row.name,
-            'number' : row.number,
-            'state' : row.state,
-            'year' : row.year
-        }] )
-        if errors == [] :
-            print("News rows added")
-        else:
-            print(f"!!Row {row.name} {row.state} on Error : {errors}")
+def insert_data(rows):
+    """Insère des lignes dans BigQuery par lot."""
+    rows_to_insert = [
+        {
+            'gender': row.gender,
+            'name': row.name,
+            'number': row.number,
+            'state': row.state,
+            'year': row.year
+        }
+        for row in rows
+    ]
 
-    if not os.path.exists('/tmp/exp'):
-        os.mknod('/tmp/exp')
-
-    with open("scr.txt", mode='w') as file:
-        file.write('Last recorded at %s.\n' % 
-                (datetime.datetime.now()))
-                
-
-main()
+    # Insertion en lot
+    errors = client.insert_rows_json(TABLE_ID, rows_to_insert)
+    if not errors:
+        print("All rows successfully inserted.")
+    else:
+        print(f"Errors encountered during insertion
