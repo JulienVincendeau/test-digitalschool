@@ -3,7 +3,7 @@ WORKDIR /app
 COPY invoke.go ./
 RUN CGO_ENABLED=0 GOOS=linux go build -v -o server
 
-FROM python:3.12.3-slim
+FROM python:3.12-slim
 USER root
 RUN apt-get update -y && \
   apt-get install --no-install-recommends -y -q && \
