@@ -1,0 +1,32 @@
+[project]
+name = "tp-dataops-jour2"
+version = "0.1.0"
+description = "TP Jour 2 — Data Contracts, Quarantaine (DLQ) et tests pytest"
+requires-python = ">=3.12"
+dependencies = [
+    "pydantic>=2.9",
+    "duckdb>=1.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3",
+    "pytest-cov>=5.0",
+    "ruff>=0.7",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3",
+    "pytest-cov>=5.0",
+    "ruff>=0.7",
+]
+
+[tool.ruff]
+line-length = 100
+lint.select = ["E", "F", "I", "B", "UP"]
+# On exclut les anciens fichiers du repo de départ pour ne linter que le TP Jour 2
+extend-exclude = ["run.py", "Untitled3.ipynb"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]

@@ -34,5 +34,8 @@ venv.bak/
 
 __pycache__
 .pytest_cache
+.ruff_cache
+.coverage
+*.egg-info/
 
 **.txt

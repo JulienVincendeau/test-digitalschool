@@ -1,0 +1,62 @@
+[
+  {
+    "station_id": "FR-0075",
+    "observed_at": "2027-03-10T10:00:00Z",
+    "temperature_c": 18.4,
+    "humidity_pct": 62.0
+  },
+  {
+    "station_id": "  fr-0069  ",
+    "observed_at": "2027-03-10T12:00:00+02:00",
+    "temperature_c": 21.0,
+    "humidity_pct": 55.0
+  },
+  {
+    "station_id": "FR-0033",
+    "observed_at": "2027-03-10T09:00:00Z",
+    "temperature_c": 15.2,
+    "humidity_pct": 70.0
+  },
+  {
+    "station_id": "FR-0075",
+    "observed_at": "2027-03-10T10:00:00Z",
+    "temperature_c": 18.4,
+    "humidity_pct": 62.0
+  },
+  {
+    "station_id": "FR-0013",
+    "observed_at": "2027-03-10T10:00:00Z",
+    "temperature_c": "chaud",
+    "humidity_pct": 50.0
+  },
+  {
+    "station_id": "PARIS",
+    "observed_at": "2027-03-10T10:00:00Z",
+    "temperature_c": 19.0,
+    "humidity_pct": 60.0
+  },
+  {
+    "station_id": "FR-0044",
+    "observed_at": "2027-03-10T10:00:00",
+    "temperature_c": 14.5,
+    "humidity_pct": 80.0
+  },
+  {
+    "station_id": "FR-0059",
+    "observed_at": "2027-03-10T10:00:00Z",
+    "temperature_c": 999.0,
+    "humidity_pct": 50.0
+  },
+  {
+    "station_id": "FR-0031",
+    "observed_at": "2027-03-10T10:00:00Z",
+    "temperature_c": 20.0,
+    "humidity_pct": null
+  },
+  {
+    "station_id": "FR-0006",
+    "observed_at": "2020-01-01T10:00:00Z",
+    "temperature_c": 12.0,
+    "humidity_pct": 65.0
+  }
+]
