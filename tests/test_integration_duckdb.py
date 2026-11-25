@@ -41,7 +41,8 @@ def con():
 
 
 def test_sql_end_to_end(con):
-    sql = lambda q: con.execute(q).fetchone()[0]
+    def sql(query):
+        return con.execute(query).fetchone()[0]
 
     # No row lost: raw = clean + quarantine
     assert sql("SELECT COUNT(*) FROM raw") == sql("SELECT COUNT(*) FROM clean") + sql("SELECT COUNT(*) FROM dlq")

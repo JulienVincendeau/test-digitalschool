@@ -22,7 +22,7 @@ Usage:
 from __future__ import annotations
 
 import os
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 import pandas as pd
 from pydantic import ValidationError
@@ -91,7 +91,7 @@ def deduplicate(valid: pd.DataFrame, raw: pd.DataFrame, run_ts: str) -> tuple[pd
 # Pipeline
 # ---------------------------------------------------------------------
 def transform(raw: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
-    run_ts = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")   # UTC
+    run_ts = datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ")   # UTC
     raw = raw.reset_index(drop=True)
     norm = normalize(raw)
     valid, dlq_invalid = validate(norm, raw, run_ts)

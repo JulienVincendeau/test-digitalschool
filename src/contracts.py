@@ -18,7 +18,7 @@ Usage:
 """
 from __future__ import annotations
 
-from datetime import date
+from datetime import UTC, datetime
 from enum import Enum
 from typing import Literal
 
@@ -69,7 +69,7 @@ class NameRecord(BaseModel):
     @field_validator("year")
     @classmethod
     def year_not_future(cls, v: int) -> int:
-        if v > date.today().year:
+        if v > datetime.now(UTC).year:
             raise ValueError("year is in the future")
         return v
 
